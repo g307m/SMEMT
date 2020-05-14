@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
+// Can I just say how incredibly hard it is to separate this out into multiple files for me?
 namespace RecipeEditor
 {
     public partial class Form1 : Form
@@ -53,33 +54,47 @@ namespace RecipeEditor
         void CraftbotBackup()
         {
             // Backup chunk
-            bool IsBackupped = (string)MyRegistry.Key.GetValue("IsBackupped")=="True"?true:false;
-            if (!IsBackupped)
+            if (!File.Exists(SmemtData + "\\RecipeEditor\\IsBackupped.txt") ||File.ReadAllText(SmemtData+"\\RecipeEditor\\IsBackupped.txt")=="false")
             {
                 Debug.Print("Backup not set!");
                 Directory.CreateDirectory(SmemtData + "RecipeEditor");
                 if(!File.Exists(SmemtData + "RecipeEditor\\craftbot.json"))
                     File.Copy(CraftingPath+"craftbot.json", SmemtData+"RecipeEditor\\craftbot.json");
                 Debug.Print("Copied 'craftbot.json'");
-                MyRegistry.Key.SetValue("IsBackupped",true);
-                Debug.Print("Backed up craftbot.json"); 
+                File.WriteAllText(SmemtData + "\\RecipeEditor\\IsBackupped.txt", "true");
+                Debug.Print("Backed up craftbot.json");
             }
         }
-        Dictionary<String, String> ItemDictionary;          // Reading
-        Dictionary<String, String> ItemDictionaryReversed;  // Writing
+        public static Dictionary<String, String> ItemDictionary;          // Reading
+        public static Dictionary<String, String> ItemDictionaryReversed;  // Writing
+        List<Recipe> CraftbotDocument;
         void LoadCraftbot() // Loads item_names.json into ItemBox, and craftbot.json into RecipeBox
         {
             String item_names = File.ReadAllText(CraftingPath + "item_names.json");
             ItemDictionary = JsonConvert.DeserializeObject<Dictionary<String, String>>(item_names);
             ItemDictionaryReversed = ItemDictionary.ToDictionary(x => x.Value, x => x.Key);
             ItemBox.DataSource = ItemDictionary.Values.ToList();
+            dynamic CraftbotJson = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(CraftingPath + "craftbot.json"));
+            CraftbotDocument = CraftbotJson;
+            foreach(Recipe r in CraftbotDocument)
+            {
+                RecipeBox.Items.Add(ItemDictionary[r.itemId]);
+            }
+            RecipeBox.SetSelected(0,true);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            MyRegistry.Startup();
+            //MyRegistry.Startup();
             GetCraftbotPath();
-            CraftbotBackup();
+            CraftbotBackup();//broken
             LoadCraftbot();
+        }
+        bool Save = true;
+        private void Form1_FormClosing(object sender, CancelEventArgs e)
+        {
+            //MyRegistry.Key.Close();
+            if (Save)
+                File.WriteAllText(CraftingPath+"craftbot.json","//Generated using SMEMT v0.1.0\n"+JsonConvert.SerializeObject(CraftbotDocument,Formatting.Indented));
         }
         // The two boxes are literally the same.
         private void AddRecipeButton_Click(object sender, EventArgs e)
@@ -96,12 +111,62 @@ namespace RecipeEditor
         private void AddIngredientButton_Click(object sender, EventArgs e)
         {
             if (!IngredientBox.Items.Contains(ItemBox.SelectedItem))
+            {
                 IngredientBox.Items.Add(ItemBox.SelectedItem);
+                CraftbotDocument[RecipeBox.SelectedIndex].AddIngredient(ItemBox.SelectedItem.ToString());
+            }
         }
 
         private void DelIngredientButton_Click(object sender, EventArgs e)
         {
             IngredientBox.Items.Remove(IngredientBox.SelectedItem);
+        }
+
+        private void RecipeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //ingredients
+            IngredientBox.Items.Clear();
+            foreach (Item i in CraftbotDocument[RecipeBox.SelectedIndex].ingredientList)
+                IngredientBox.Items.Add(ItemDictionary[i.itemId]);
+            IngredientBox.SetSelected(0, true);
+            TimeUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].craftTime;
+            // product
+            ProductQuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].quantity;
+        }
+
+        private void IngredientBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                QuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].ingredientList[IngredientBox.SelectedIndex].quantity;
+            }
+            catch(Exception ex) { }
+            ProductQuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].quantity;
+            IngredientBox.SelectedIndex = IngredientBox.Items.Count-1;
+        }
+
+        private void QuantityUD_ValueChanged(object sender, EventArgs e)
+        {
+            CraftbotDocument[RecipeBox.SelectedIndex].ingredientList[IngredientBox.SelectedIndex].quantity = (uint)QuantityUD.Value;
+        }
+
+        private void TimeUD_ValueChanged(object sender, EventArgs e)
+        {
+            CraftbotDocument[RecipeBox.SelectedIndex].craftTime = (uint)TimeUD.Value;
+        }
+
+        private void ProductQuantityUD_ValueChanged(object sender, EventArgs e)
+        {
+            CraftbotDocument[RecipeBox.SelectedIndex].quantity = (uint)ProductQuantityUD.Value;
+        }
+
+        private void RestoreButton_Click(object sender, EventArgs e)
+        {
+            Save = false;
+            File.Copy(SmemtData + "RecipeEditor\\craftbot.json", CraftingPath + "craftbot.json", true);
+            File.WriteAllText(SmemtData + "\\RecipeEditor\\IsBackupped.txt", "true");
+            MessageBox.Show("Restored craftbot.json");
+            Application.Exit();
         }
     }
 }

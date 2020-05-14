@@ -37,9 +37,16 @@
             this.AddIngredientButton = new System.Windows.Forms.Button();
             this.QuantityUD = new System.Windows.Forms.NumericUpDown();
             this.QuantityLabel = new System.Windows.Forms.Label();
-            this.recipeFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RestoreButton = new System.Windows.Forms.Button();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.TimeUD = new System.Windows.Forms.NumericUpDown();
+            this.ProductQuantityLabel = new System.Windows.Forms.Label();
+            this.ProductQuantityUD = new System.Windows.Forms.NumericUpDown();
+            this.ProductsLabel = new System.Windows.Forms.Label();
+            this.IngredientsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductQuantityUD)).BeginInit();
             this.SuspendLayout();
             // 
             // ItemBox
@@ -54,18 +61,21 @@
             // RecipeBox
             // 
             this.RecipeBox.FormattingEnabled = true;
-            this.RecipeBox.Location = new System.Drawing.Point(159, 12);
+            this.RecipeBox.Location = new System.Drawing.Point(159, 25);
             this.RecipeBox.Name = "RecipeBox";
-            this.RecipeBox.Size = new System.Drawing.Size(141, 368);
+            this.RecipeBox.Size = new System.Drawing.Size(141, 355);
             this.RecipeBox.TabIndex = 1;
+            this.RecipeBox.SelectedIndexChanged += new System.EventHandler(this.RecipeBox_SelectedIndexChanged);
             // 
             // IngredientBox
             // 
             this.IngredientBox.FormattingEnabled = true;
-            this.IngredientBox.Location = new System.Drawing.Point(306, 12);
+            this.IngredientBox.Location = new System.Drawing.Point(306, 25);
             this.IngredientBox.Name = "IngredientBox";
-            this.IngredientBox.Size = new System.Drawing.Size(140, 368);
+            this.IngredientBox.Size = new System.Drawing.Size(140, 355);
+            this.IngredientBox.Sorted = true;
             this.IngredientBox.TabIndex = 2;
+            this.IngredientBox.SelectedIndexChanged += new System.EventHandler(this.IngredientBox_SelectedIndexChanged);
             // 
             // AddRecipeButton
             // 
@@ -109,24 +119,30 @@
             // 
             // QuantityUD
             // 
-            this.QuantityUD.Location = new System.Drawing.Point(503, 11);
+            this.QuantityUD.Location = new System.Drawing.Point(544, 38);
+            this.QuantityUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.QuantityUD.Name = "QuantityUD";
             this.QuantityUD.Size = new System.Drawing.Size(81, 20);
             this.QuantityUD.TabIndex = 4;
+            this.QuantityUD.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.QuantityUD.ValueChanged += new System.EventHandler(this.QuantityUD_ValueChanged);
             // 
             // QuantityLabel
             // 
             this.QuantityLabel.AutoSize = true;
-            this.QuantityLabel.Location = new System.Drawing.Point(452, 13);
+            this.QuantityLabel.Location = new System.Drawing.Point(452, 40);
             this.QuantityLabel.Name = "QuantityLabel";
             this.QuantityLabel.Size = new System.Drawing.Size(46, 13);
             this.QuantityLabel.TabIndex = 5;
             this.QuantityLabel.Text = "Quantity";
-            // 
-            // recipeFileDialog
-            // 
-            this.recipeFileDialog.FileName = "craftbot.json";
-            this.recipeFileDialog.Filter = "JSON files (*.json)|*.json";
             // 
             // RestoreButton
             // 
@@ -136,6 +152,79 @@
             this.RestoreButton.TabIndex = 3;
             this.RestoreButton.Text = "Restore File";
             this.RestoreButton.UseVisualStyleBackColor = true;
+            this.RestoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.Location = new System.Drawing.Point(452, 67);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(53, 13);
+            this.TimeLabel.TabIndex = 7;
+            this.TimeLabel.Text = "Time (-3s)";
+            // 
+            // TimeUD
+            // 
+            this.TimeUD.Location = new System.Drawing.Point(544, 65);
+            this.TimeUD.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.TimeUD.Name = "TimeUD";
+            this.TimeUD.Size = new System.Drawing.Size(81, 20);
+            this.TimeUD.TabIndex = 6;
+            this.TimeUD.ValueChanged += new System.EventHandler(this.TimeUD_ValueChanged);
+            // 
+            // ProductQuantityLabel
+            // 
+            this.ProductQuantityLabel.AutoSize = true;
+            this.ProductQuantityLabel.Location = new System.Drawing.Point(452, 13);
+            this.ProductQuantityLabel.Name = "ProductQuantityLabel";
+            this.ProductQuantityLabel.Size = new System.Drawing.Size(86, 13);
+            this.ProductQuantityLabel.TabIndex = 9;
+            this.ProductQuantityLabel.Text = "Product Quantity";
+            // 
+            // ProductQuantityUD
+            // 
+            this.ProductQuantityUD.Location = new System.Drawing.Point(544, 11);
+            this.ProductQuantityUD.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.ProductQuantityUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ProductQuantityUD.Name = "ProductQuantityUD";
+            this.ProductQuantityUD.Size = new System.Drawing.Size(81, 20);
+            this.ProductQuantityUD.TabIndex = 8;
+            this.ProductQuantityUD.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ProductQuantityUD.ValueChanged += new System.EventHandler(this.ProductQuantityUD_ValueChanged);
+            // 
+            // ProductsLabel
+            // 
+            this.ProductsLabel.AutoSize = true;
+            this.ProductsLabel.Location = new System.Drawing.Point(159, 9);
+            this.ProductsLabel.Name = "ProductsLabel";
+            this.ProductsLabel.Size = new System.Drawing.Size(49, 13);
+            this.ProductsLabel.TabIndex = 10;
+            this.ProductsLabel.Text = "Products";
+            // 
+            // IngredientsLabel
+            // 
+            this.IngredientsLabel.AutoSize = true;
+            this.IngredientsLabel.Location = new System.Drawing.Point(303, 9);
+            this.IngredientsLabel.Name = "IngredientsLabel";
+            this.IngredientsLabel.Size = new System.Drawing.Size(59, 13);
+            this.IngredientsLabel.TabIndex = 11;
+            this.IngredientsLabel.Text = "Ingredients";
             // 
             // Form1
             // 
@@ -143,6 +232,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.IngredientsLabel);
+            this.Controls.Add(this.ProductsLabel);
+            this.Controls.Add(this.ProductQuantityLabel);
+            this.Controls.Add(this.ProductQuantityUD);
+            this.Controls.Add(this.TimeLabel);
+            this.Controls.Add(this.TimeUD);
             this.Controls.Add(this.RestoreButton);
             this.Controls.Add(this.QuantityLabel);
             this.Controls.Add(this.QuantityUD);
@@ -159,8 +254,11 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMEMT:  Recipe Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductQuantityUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,8 +275,13 @@
         private System.Windows.Forms.Button AddIngredientButton;
         private System.Windows.Forms.NumericUpDown QuantityUD;
         private System.Windows.Forms.Label QuantityLabel;
-        private System.Windows.Forms.OpenFileDialog recipeFileDialog;
         private System.Windows.Forms.Button RestoreButton;
+        private System.Windows.Forms.Label TimeLabel;
+        private System.Windows.Forms.NumericUpDown TimeUD;
+        private System.Windows.Forms.Label ProductQuantityLabel;
+        private System.Windows.Forms.NumericUpDown ProductQuantityUD;
+        private System.Windows.Forms.Label ProductsLabel;
+        private System.Windows.Forms.Label IngredientsLabel;
     }
 }
 
