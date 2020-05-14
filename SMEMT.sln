@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{307312AF-29B1-4354-8618-92128B190757}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		RecipeEditor\README.md = RecipeEditor\README.md
 	EndProjectSection
 EndProject
 Global
