@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,8 @@ namespace RecipeEditor
         // Puts the registry together so it's nice and usable.
         static void BuildRegistry()
         {
-            Key.SetValue("IsBackupped", false);
+            Key.SetValue("IsBackupped", 0);
+            Debug.Print("Created IsBackupped");
         }
         public static void Startup()
         {
@@ -27,7 +29,7 @@ namespace RecipeEditor
             else
             {
                 Key = Registry.CurrentUser.OpenSubKey("Software\\SMEMT");
-                if (Key.GetValue("IsBackupped")==null)
+                if (Key.GetValue("IsBackupped") == null)
                     BuildRegistry();
             }
                 
