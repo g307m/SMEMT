@@ -2,15 +2,12 @@
 using Gameloop.Vdf.JsonConverter;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 // Can I just say how incredibly hard it is to separate this out into multiple files for me?
@@ -100,12 +97,16 @@ namespace RecipeEditor
         private void AddRecipeButton_Click(object sender, EventArgs e)
         {
             if (!RecipeBox.Items.Contains(ItemBox.SelectedItem))
+            {
                 RecipeBox.Items.Add(ItemBox.SelectedItem);
+                CraftbotDocument.Add(new Recipe(ItemDictionaryReversed[ItemBox.SelectedItem.ToString()]));
+            }
         }
 
         private void DelRecipeButton_Click(object sender, EventArgs e)
         {
             RecipeBox.Items.Remove(RecipeBox.SelectedItem);
+            RecipeBox.SelectedIndex = RecipeBox.Items.Count - 1;
         }
 
         private void AddIngredientButton_Click(object sender, EventArgs e)
@@ -120,15 +121,19 @@ namespace RecipeEditor
         private void DelIngredientButton_Click(object sender, EventArgs e)
         {
             IngredientBox.Items.Remove(IngredientBox.SelectedItem);
+            IngredientBox.SelectedIndex = IngredientBox.Items.Count - 1;
         }
 
         private void RecipeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //ingredients
             IngredientBox.Items.Clear();
+            if (RecipeBox.SelectedIndex < 0)
+                RecipeBox.SelectedIndex = 1;
             foreach (Item i in CraftbotDocument[RecipeBox.SelectedIndex].ingredientList)
                 IngredientBox.Items.Add(ItemDictionary[i.itemId]);
-            IngredientBox.SetSelected(0, true);
+            if(IngredientBox.Items.Count != 0)
+                IngredientBox.SetSelected(0, false);
             TimeUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].craftTime;
             // product
             ProductQuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].quantity;
@@ -142,7 +147,6 @@ namespace RecipeEditor
             }
             catch(Exception ex) { }
             ProductQuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].quantity;
-            IngredientBox.SelectedIndex = IngredientBox.Items.Count-1;
         }
 
         private void QuantityUD_ValueChanged(object sender, EventArgs e)
