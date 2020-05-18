@@ -1,7 +1,9 @@
 ﻿using Gameloop.Vdf;
 using Gameloop.Vdf.JsonConverter;
+using Gameloop.Vdf.Linq;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using RecipeEditor.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,18 +25,30 @@ namespace RecipeEditor
         }
         String SteamInstallPath;
         String CraftingPath;
+        void SteamError() // pierissy bad
+        {
+            MessageBox.Show("Failed to find a valid Steam install in the registry/filesystem. Do you have a legitimate copy of the game?", "Failed to find Steam!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Application.Exit();
+        }
         void GetCraftbotPath()
         {
             // Get Steam location from registry
             SteamInstallPath = (String)Registry.GetValue("HKEY_CURRENT_USER\\Software\\Valve\\Steam", "SteamPath", "NOT FOUND");
             Debug.Print("SteamPath: \"{0}\"", SteamInstallPath);
-            if (SteamInstallPath == "NOT FOUND")
-            {   // pierissy bad
-                MessageBox.Show("Failed to find Steam install path in registry. Do you have a legitimate copy of the game?", "Failed to find Steam!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+            if (!Directory.Exists(SteamInstallPath))
+                SteamError();
             // Turning VDF into JSON, because it's not possible to select the "1" key with VDF
-            dynamic libraryfoldersjson = VdfConvert.Deserialize(File.ReadAllText(SteamInstallPath + "\\steamapps\\libraryfolders.vdf")).Value.ToJson();
+            // Unique case worth fixing:
+            // TODO: Fix exception when installation on external drive is disconnected
+            dynamic libraryfoldersjson = new VProperty();
+            try
+            {
+                libraryfoldersjson = VdfConvert.Deserialize(File.ReadAllText(SteamInstallPath + "\\steamapps\\libraryfolders.vdf")).Value.ToJson();
+            }
+            catch
+            {
+                SteamError();
+            }
             if (File.Exists(SteamInstallPath + "\\steamapps\\appmanifest_387990.acf"))
             {
                 CraftingPath = SteamInstallPath + "\\steamapps\\common\\Scrap Mechanic\\Survival\\CraftingRecipes\\";
@@ -81,6 +95,7 @@ namespace RecipeEditor
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = $"SMEMT v{Resources.VersionString}: Recipe Editor";
             //MyRegistry.Startup();
             GetCraftbotPath();
             CraftbotBackup();//broken
@@ -91,7 +106,7 @@ namespace RecipeEditor
         {
             //MyRegistry.Key.Close();
             if (Save)
-                File.WriteAllText(CraftingPath+"craftbot.json","//Generated using SMEMT v0.1.0\n"+JsonConvert.SerializeObject(CraftbotDocument,Formatting.Indented));
+                File.WriteAllText(CraftingPath+"craftbot.json",$"//Generated using SMEMT v{Resources.VersionString}\n"+JsonConvert.SerializeObject(CraftbotDocument,Formatting.Indented));
         }
         // The two boxes are literally the same.
         private void AddRecipeButton_Click(object sender, EventArgs e)
@@ -145,7 +160,7 @@ namespace RecipeEditor
             {
                 QuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].ingredientList[IngredientBox.SelectedIndex].quantity;
             }
-            catch(Exception ex) { }
+            catch { }
             ProductQuantityUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].quantity;
         }
 
@@ -171,6 +186,11 @@ namespace RecipeEditor
             File.WriteAllText(SmemtData + "\\RecipeEditor\\IsBackupped.txt", "true");
             MessageBox.Show("Restored craftbot.json");
             Application.Exit();
+        }
+
+        private void saveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Save = !Save;
         }
     }
 }
