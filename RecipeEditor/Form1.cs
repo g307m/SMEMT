@@ -120,6 +120,9 @@ namespace RecipeEditor
 
         private void DelRecipeButton_Click(object sender, EventArgs e)
         {
+            Recipe recipeToRemove = CraftbotDocument.Single(r => r.itemId == ItemDictionaryReversed[RecipeBox.SelectedItem.ToString()]);
+            if (recipeToRemove != null)
+                CraftbotDocument.Remove(recipeToRemove);
             RecipeBox.Items.Remove(RecipeBox.SelectedItem);
             RecipeBox.SelectedIndex = RecipeBox.Items.Count - 1;
         }
@@ -135,6 +138,7 @@ namespace RecipeEditor
 
         private void DelIngredientButton_Click(object sender, EventArgs e)
         {
+            CraftbotDocument[RecipeBox.SelectedIndex].RemoveIngredient(IngredientBox.SelectedItem.ToString());
             IngredientBox.Items.Remove(IngredientBox.SelectedItem);
             IngredientBox.SelectedIndex = IngredientBox.Items.Count - 1;
         }

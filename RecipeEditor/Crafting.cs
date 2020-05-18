@@ -17,6 +17,12 @@ namespace RecipeEditor
         {
             this.ingredientList.Add(new Item(Form1.ItemDictionaryReversed[name]));
         }
+        public void RemoveIngredient(string name)
+        {
+            Item itemToRemove = ingredientList.Single(i => i.itemId == Form1.ItemDictionaryReversed[name]);
+            if (itemToRemove != null)
+                ingredientList.Remove(itemToRemove);
+        }
         public Recipe(String itemId, uint quantity = 1,uint craftTime=0)
         {
             this.itemId = itemId;
