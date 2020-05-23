@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,14 +18,22 @@ namespace RecipeEditor
 {
     public partial class Form1 : Form
     {
+
         String AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         String SmemtData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SMEMT\\";
+        void ShowDebug()
+        {
+            debugPanel.Controls["cultureLabel"].Text = "2 letter: " + CultureInfo.CurrentCulture.TwoLetterISOLanguageName; // Thanks, Brazil
+            debugPanel.Controls["englishDebugLabel"].Text = "english: " + Localization.lang;
+            debugPanel.Show();
+        }
         public Form1()
         {
             InitializeComponent();
+            if (Resources.Deboolg == "true") ShowDebug();
         }
         String SteamInstallPath;
-        String CraftingPath;
+        public static String CraftingPath;
         void SteamError() // pierissy bad
         {
             MessageBox.Show("Failed to find a valid Steam install in the registry/filesystem. Do you have a legitimate copy of the game?", "Failed to find Steam!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -60,8 +69,9 @@ namespace RecipeEditor
 
             Debug.Print("Registered steam: " + SteamInstallPath);
             Debug.Print("Game Path:        " + CraftingPath);
-
+            SmPath = SteamInstallPath + "\\steamapps\\common\\Scrap Mechanic\\";
         }
+        public static String SmPath; 
         void CraftbotBackup()
         {
             // Backup chunk
@@ -76,20 +86,15 @@ namespace RecipeEditor
                 Debug.Print("Backed up craftbot.json");
             }
         }
-        public static Dictionary<String, String> ItemDictionary;          // Reading
-        public static Dictionary<String, String> ItemDictionaryReversed;  // Writing
         List<Recipe> CraftbotDocument;
         void LoadCraftbot() // Loads item_names.json into ItemBox, and craftbot.json into RecipeBox
         {
-            String item_names = File.ReadAllText(CraftingPath + "item_names.json");
-            ItemDictionary = JsonConvert.DeserializeObject<Dictionary<String, String>>(item_names);
-            ItemDictionaryReversed = ItemDictionary.ToDictionary(x => x.Value, x => x.Key);
-            ItemBox.DataSource = ItemDictionary.Values.ToList();
+            ItemBox.DataSource = Localization.LocalizeList(DataClass.ItemDictionary.Keys.ToList());
             dynamic CraftbotJson = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(CraftingPath + "craftbot.json"));
             CraftbotDocument = CraftbotJson;
             foreach(Recipe r in CraftbotDocument)
             {
-                RecipeBox.Items.Add(ItemDictionary[r.itemId]);
+                RecipeBox.Items.Add(Localization.Localize(r.itemId.ToString()));
             }
             RecipeBox.SetSelected(0,true);
         }
@@ -99,7 +104,10 @@ namespace RecipeEditor
             //MyRegistry.Startup();
             GetCraftbotPath();
             CraftbotBackup();//broken
+            DataClass.ItemDictInit();
+            Localization.Load();
             LoadCraftbot();
+            
         }
         bool Save = true;
         private void Form1_FormClosing(object sender, CancelEventArgs e)
@@ -114,13 +122,13 @@ namespace RecipeEditor
             if (!RecipeBox.Items.Contains(ItemBox.SelectedItem))
             {
                 RecipeBox.Items.Add(ItemBox.SelectedItem);
-                CraftbotDocument.Add(new Recipe(ItemDictionaryReversed[ItemBox.SelectedItem.ToString()]));
+                CraftbotDocument.Add(new Recipe(Localization.Externalize(ItemBox.SelectedItem.ToString())));
             }
         }
 
         private void DelRecipeButton_Click(object sender, EventArgs e)
         {
-            Recipe recipeToRemove = CraftbotDocument.Single(r => r.itemId == ItemDictionaryReversed[RecipeBox.SelectedItem.ToString()]);
+            Recipe recipeToRemove = CraftbotDocument.Single(r => r.itemId == DataClass.ItemDictionaryReversed[RecipeBox.SelectedItem.ToString()]);
             if (recipeToRemove != null)
                 CraftbotDocument.Remove(recipeToRemove);
             RecipeBox.Items.Remove(RecipeBox.SelectedItem);
@@ -129,10 +137,17 @@ namespace RecipeEditor
 
         private void AddIngredientButton_Click(object sender, EventArgs e)
         {
-            if (!IngredientBox.Items.Contains(ItemBox.SelectedItem))
+            try
             {
-                IngredientBox.Items.Add(ItemBox.SelectedItem);
-                CraftbotDocument[RecipeBox.SelectedIndex].AddIngredient(ItemBox.SelectedItem.ToString());
+                if (!IngredientBox.Items.Contains(ItemBox.SelectedItem))
+                {
+                    IngredientBox.Items.Add(ItemBox.SelectedItem);
+                    CraftbotDocument[RecipeBox.SelectedIndex].AddIngredientID(Localization.Externalize(ItemBox.SelectedItem.ToString()));
+                }
+            }
+            catch
+            {
+                Debug.Print("ew");
             }
         }
 
@@ -150,7 +165,7 @@ namespace RecipeEditor
             if (RecipeBox.SelectedIndex < 0)
                 RecipeBox.SelectedIndex = 1;
             foreach (Item i in CraftbotDocument[RecipeBox.SelectedIndex].ingredientList)
-                IngredientBox.Items.Add(ItemDictionary[i.itemId]);
+                IngredientBox.Items.Add(Localization.Localize(i.itemId));
             if(IngredientBox.Items.Count != 0)
                 IngredientBox.SetSelected(0, false);
             TimeUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].craftTime;
@@ -192,7 +207,7 @@ namespace RecipeEditor
             Application.Exit();
         }
 
-        private void saveCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void SaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Save = !Save;
         }

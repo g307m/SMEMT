@@ -15,11 +15,23 @@ namespace RecipeEditor
         public List<Item> ingredientList;
         public void AddIngredient(String name)
         {
-            this.ingredientList.Add(new Item(Form1.ItemDictionaryReversed[name]));
+            this.ingredientList.Add(new Item(DataClass.ItemDictionaryReversed[name]));
+        }
+        public void AddIngredientID(String id)
+        {
+            this.ingredientList.Add(new Item(id));
         }
         public void RemoveIngredient(string name)
         {
-            Item itemToRemove = ingredientList.Single(i => i.itemId == Form1.ItemDictionaryReversed[name]);
+            Item itemToRemove;
+            try
+            {
+                itemToRemove = ingredientList.Single(i => i.itemId == DataClass.ItemDictionaryReversed[name]);
+            }
+            catch
+            {
+                itemToRemove = ingredientList.Single(i => i.itemId == Localization.Externalize(name));
+            }
             if (itemToRemove != null)
                 ingredientList.Remove(itemToRemove);
         }

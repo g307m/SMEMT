@@ -61,7 +61,16 @@ namespace RecipeEditor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.1.1.
+        ///   Looks up a localized string similar to false.
+        /// </summary>
+        internal static string Deboolg {
+            get {
+                return ResourceManager.GetString("Deboolg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.2.0.
         /// </summary>
         internal static string VersionString {
             get {

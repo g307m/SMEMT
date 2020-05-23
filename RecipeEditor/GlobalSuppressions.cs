@@ -5,3 +5,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
+[assembly: SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>", Scope = "member", Target = "~F:RecipeEditor.Form1.AppData")]
+[assembly: SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>", Scope = "member", Target = "~F:RecipeEditor.Form1.SmemtData")]
+[assembly: SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>", Scope = "member", Target = "~F:RecipeEditor.Localization.localizationDictionary")]
+[assembly: SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>", Scope = "member", Target = "~F:RecipeEditor.Localization.externalizationDictionary")]
