@@ -1,5 +1,5 @@
 ﻿# SMEMT
-Scrap Mechanic Extended Mod Tools: Now workinger.
+Scrap Mechanic Extended Mod Tools: Now workingerest.
 
 ## helping or something
 1. Clone the repository to Visual Studio 2019
