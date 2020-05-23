@@ -71,16 +71,16 @@ namespace RecipeEditor
             Debug.Print("Game Path:        " + CraftingPath);
             SmPath = SteamInstallPath + "\\steamapps\\common\\Scrap Mechanic\\";
         }
-        public static String SmPath; 
+        public static String SmPath;
         void CraftbotBackup()
         {
             // Backup chunk
-            if (!File.Exists(SmemtData + "\\RecipeEditor\\IsBackupped.txt") ||File.ReadAllText(SmemtData+"\\RecipeEditor\\IsBackupped.txt")=="false")
+            if (!File.Exists(SmemtData + "\\RecipeEditor\\IsBackupped.txt") || File.ReadAllText(SmemtData + "\\RecipeEditor\\IsBackupped.txt") == "false")
             {
                 Debug.Print("Backup not set!");
                 Directory.CreateDirectory(SmemtData + "RecipeEditor");
-                if(!File.Exists(SmemtData + "RecipeEditor\\craftbot.json"))
-                    File.Copy(CraftingPath+"craftbot.json", SmemtData+"RecipeEditor\\craftbot.json");
+                if (!File.Exists(SmemtData + "RecipeEditor\\craftbot.json"))
+                    File.Copy(CraftingPath + "craftbot.json", SmemtData + "RecipeEditor\\craftbot.json");
                 Debug.Print("Copied 'craftbot.json'");
                 File.WriteAllText(SmemtData + "\\RecipeEditor\\IsBackupped.txt", "true");
                 Debug.Print("Backed up craftbot.json");
@@ -92,11 +92,11 @@ namespace RecipeEditor
             ItemBox.DataSource = Localization.LocalizeList(DataClass.ItemDictionary.Keys.ToList());
             dynamic CraftbotJson = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(CraftingPath + "craftbot.json"));
             CraftbotDocument = CraftbotJson;
-            foreach(Recipe r in CraftbotDocument)
+            foreach (Recipe r in CraftbotDocument)
             {
                 RecipeBox.Items.Add(Localization.Localize(r.itemId.ToString()));
             }
-            RecipeBox.SetSelected(0,true);
+            RecipeBox.SetSelected(0, true);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -107,14 +107,19 @@ namespace RecipeEditor
             DataClass.ItemDictInit();
             Localization.Load();
             LoadCraftbot();
-            
         }
         bool Save = true;
         private void Form1_FormClosing(object sender, CancelEventArgs e)
         {
             //MyRegistry.Key.Close();
+            Settings.Default.Save();
             if (Save)
-                File.WriteAllText(CraftingPath+"craftbot.json",$"//Generated using SMEMT v{Resources.VersionString}\n"+JsonConvert.SerializeObject(CraftbotDocument,Formatting.Indented));
+                SaveNow();
+        }
+        private void SaveNow()
+        {
+            File.WriteAllText(CraftingPath + "craftbot.json", $"//Generated using SMEMT v{Resources.VersionString}\n" + JsonConvert.SerializeObject(CraftbotDocument, Formatting.Indented));
+            Debug.Print("saving");
         }
         // The two boxes are literally the same.
         private void AddRecipeButton_Click(object sender, EventArgs e)
@@ -166,7 +171,7 @@ namespace RecipeEditor
                 RecipeBox.SelectedIndex = 1;
             foreach (Item i in CraftbotDocument[RecipeBox.SelectedIndex].ingredientList)
                 IngredientBox.Items.Add(Localization.Localize(i.itemId));
-            if(IngredientBox.Items.Count != 0)
+            if (IngredientBox.Items.Count != 0)
                 IngredientBox.SetSelected(0, false);
             TimeUD.Value = CraftbotDocument[RecipeBox.SelectedIndex].craftTime;
             // product
@@ -210,6 +215,16 @@ namespace RecipeEditor
         private void SaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Save = !Save;
+        }
+
+        private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new LanguageForm().Show(this);
+        }
+
+        private void StripFileSave_Click(object sender, EventArgs e)
+        {
+            SaveNow();
         }
     }
 }

@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Runtime.Remoting.Messaging;
 using System.Drawing;
+using RecipeEditor.Properties;
 
 namespace RecipeEditor
 {
@@ -22,15 +23,23 @@ namespace RecipeEditor
         static Dictionary<String, String> localizationDictionary = new Dictionary<String, String>();
         static Dictionary<String, String> externalizationDictionary = new Dictionary<String, String>();
         public static String lang = CultureInfo.GetCultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName).EnglishName.ToLower();
+        public static JObject languagesjson;
         public static void Load()
         {
             // put the current language file in languagedocument
-            JObject languagesjson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Data\\Gui\\Language\\languages.json"));
+            languagesjson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Data\\Gui\\Language\\languages.json"));
             JObject languagedocument;
-            if (!languagesjson.ContainsKey(lang))
-                languagedocument = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Data\\Gui\\Language\\English\\InventoryItemDescriotions.json"));
+            String language;
+            if (Settings.Default.Language.Length != 0)
+                language = Settings.Default.Language;
             else
-                languagedocument = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Data\\Gui\\Language\\" + languagesjson[lang] + "\\InventoryItemDescriptions.json"));
+            {
+                if (!languagesjson.ContainsKey(lang))
+                    language = "English";
+                else
+                    language = languagesjson[lang].ToString();
+            }
+            languagedocument = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + $"Data\\Gui\\Language\\{language}\\InventoryItemDescriptions.json"));
             JObject survivaldoc = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Survival\\Gui\\Language\\English\\inventoryDescriptions.json"));
             languagedocument.Merge(survivaldoc);
             // oh cool, dictionaries
@@ -89,7 +98,7 @@ namespace RecipeEditor
             try
             {
                 List<String> returner = new List<String>();
-                foreach(String streeng in input)
+                foreach (String streeng in input)
                 {
                     returner.Add(localizationDictionary[streeng]);
                 }

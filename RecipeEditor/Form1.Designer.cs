@@ -59,6 +59,7 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuantityUD)).BeginInit();
@@ -69,42 +70,36 @@
             // ItemBox
             // 
             this.ItemBox.FormattingEnabled = true;
-            this.ItemBox.Location = new System.Drawing.Point(13, 31);
-            this.ItemBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemBox.Location = new System.Drawing.Point(10, 25);
             this.ItemBox.Name = "ItemBox";
-            this.ItemBox.Size = new System.Drawing.Size(189, 24);
+            this.ItemBox.Size = new System.Drawing.Size(143, 21);
             this.ItemBox.TabIndex = 0;
             this.ItemBox.Text = "Select an item";
             // 
             // RecipeBox
             // 
             this.RecipeBox.FormattingEnabled = true;
-            this.RecipeBox.ItemHeight = 16;
-            this.RecipeBox.Location = new System.Drawing.Point(212, 63);
-            this.RecipeBox.Margin = new System.Windows.Forms.Padding(4);
+            this.RecipeBox.Location = new System.Drawing.Point(159, 51);
             this.RecipeBox.Name = "RecipeBox";
-            this.RecipeBox.Size = new System.Drawing.Size(187, 404);
+            this.RecipeBox.Size = new System.Drawing.Size(141, 329);
             this.RecipeBox.TabIndex = 1;
             this.RecipeBox.SelectedIndexChanged += new System.EventHandler(this.RecipeBox_SelectedIndexChanged);
             // 
             // IngredientBox
             // 
             this.IngredientBox.FormattingEnabled = true;
-            this.IngredientBox.ItemHeight = 16;
-            this.IngredientBox.Location = new System.Drawing.Point(408, 63);
-            this.IngredientBox.Margin = new System.Windows.Forms.Padding(4);
+            this.IngredientBox.Location = new System.Drawing.Point(306, 51);
             this.IngredientBox.Name = "IngredientBox";
-            this.IngredientBox.Size = new System.Drawing.Size(185, 404);
+            this.IngredientBox.Size = new System.Drawing.Size(140, 329);
             this.IngredientBox.Sorted = true;
             this.IngredientBox.TabIndex = 2;
             this.IngredientBox.SelectedIndexChanged += new System.EventHandler(this.IngredientBox_SelectedIndexChanged);
             // 
             // AddRecipeButton
             // 
-            this.AddRecipeButton.Location = new System.Drawing.Point(13, 63);
-            this.AddRecipeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddRecipeButton.Location = new System.Drawing.Point(10, 51);
             this.AddRecipeButton.Name = "AddRecipeButton";
-            this.AddRecipeButton.Size = new System.Drawing.Size(191, 25);
+            this.AddRecipeButton.Size = new System.Drawing.Size(143, 20);
             this.AddRecipeButton.TabIndex = 3;
             this.AddRecipeButton.Text = "Add Recipe";
             this.AddRecipeButton.UseVisualStyleBackColor = true;
@@ -112,10 +107,9 @@
             // 
             // DelRecipeButton
             // 
-            this.DelRecipeButton.Location = new System.Drawing.Point(13, 94);
-            this.DelRecipeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DelRecipeButton.Location = new System.Drawing.Point(10, 76);
             this.DelRecipeButton.Name = "DelRecipeButton";
-            this.DelRecipeButton.Size = new System.Drawing.Size(191, 25);
+            this.DelRecipeButton.Size = new System.Drawing.Size(143, 20);
             this.DelRecipeButton.TabIndex = 3;
             this.DelRecipeButton.Text = "Remove Recipe";
             this.DelRecipeButton.UseVisualStyleBackColor = true;
@@ -123,10 +117,9 @@
             // 
             // DelIngredientButton
             // 
-            this.DelIngredientButton.Location = new System.Drawing.Point(13, 156);
-            this.DelIngredientButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DelIngredientButton.Location = new System.Drawing.Point(10, 127);
             this.DelIngredientButton.Name = "DelIngredientButton";
-            this.DelIngredientButton.Size = new System.Drawing.Size(191, 25);
+            this.DelIngredientButton.Size = new System.Drawing.Size(143, 20);
             this.DelIngredientButton.TabIndex = 3;
             this.DelIngredientButton.Text = "Remove Ingredient";
             this.DelIngredientButton.UseVisualStyleBackColor = true;
@@ -134,10 +127,9 @@
             // 
             // AddIngredientButton
             // 
-            this.AddIngredientButton.Location = new System.Drawing.Point(13, 125);
-            this.AddIngredientButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddIngredientButton.Location = new System.Drawing.Point(10, 102);
             this.AddIngredientButton.Name = "AddIngredientButton";
-            this.AddIngredientButton.Size = new System.Drawing.Size(191, 25);
+            this.AddIngredientButton.Size = new System.Drawing.Size(143, 20);
             this.AddIngredientButton.TabIndex = 3;
             this.AddIngredientButton.Text = "Add Ingredient";
             this.AddIngredientButton.UseVisualStyleBackColor = true;
@@ -145,15 +137,14 @@
             // 
             // QuantityUD
             // 
-            this.QuantityUD.Location = new System.Drawing.Point(723, 69);
-            this.QuantityUD.Margin = new System.Windows.Forms.Padding(4);
+            this.QuantityUD.Location = new System.Drawing.Point(542, 56);
             this.QuantityUD.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.QuantityUD.Name = "QuantityUD";
-            this.QuantityUD.Size = new System.Drawing.Size(108, 22);
+            this.QuantityUD.Size = new System.Drawing.Size(81, 20);
             this.QuantityUD.TabIndex = 4;
             this.QuantityUD.Value = new decimal(new int[] {
             1,
@@ -165,19 +156,17 @@
             // QuantityLabel
             // 
             this.QuantityLabel.AutoSize = true;
-            this.QuantityLabel.Location = new System.Drawing.Point(601, 71);
-            this.QuantityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.QuantityLabel.Location = new System.Drawing.Point(451, 58);
             this.QuantityLabel.Name = "QuantityLabel";
-            this.QuantityLabel.Size = new System.Drawing.Size(61, 17);
+            this.QuantityLabel.Size = new System.Drawing.Size(46, 13);
             this.QuantityLabel.TabIndex = 5;
             this.QuantityLabel.Text = "Quantity";
             // 
             // RestoreButton
             // 
-            this.RestoreButton.Location = new System.Drawing.Point(13, 186);
-            this.RestoreButton.Margin = new System.Windows.Forms.Padding(4);
+            this.RestoreButton.Location = new System.Drawing.Point(10, 151);
             this.RestoreButton.Name = "RestoreButton";
-            this.RestoreButton.Size = new System.Drawing.Size(191, 25);
+            this.RestoreButton.Size = new System.Drawing.Size(143, 20);
             this.RestoreButton.TabIndex = 3;
             this.RestoreButton.Text = "Restore File";
             this.RestoreButton.UseVisualStyleBackColor = true;
@@ -186,41 +175,37 @@
             // TimeLabel
             // 
             this.TimeLabel.AutoSize = true;
-            this.TimeLabel.Location = new System.Drawing.Point(601, 104);
-            this.TimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TimeLabel.Location = new System.Drawing.Point(451, 84);
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(73, 17);
+            this.TimeLabel.Size = new System.Drawing.Size(53, 13);
             this.TimeLabel.TabIndex = 7;
             this.TimeLabel.Text = "Time (-3s)";
             // 
             // TimeUD
             // 
-            this.TimeUD.Location = new System.Drawing.Point(723, 102);
-            this.TimeUD.Margin = new System.Windows.Forms.Padding(4);
+            this.TimeUD.Location = new System.Drawing.Point(542, 83);
             this.TimeUD.Maximum = new decimal(new int[] {
             -1,
             -1,
             -1,
             0});
             this.TimeUD.Name = "TimeUD";
-            this.TimeUD.Size = new System.Drawing.Size(108, 22);
+            this.TimeUD.Size = new System.Drawing.Size(81, 20);
             this.TimeUD.TabIndex = 6;
             this.TimeUD.ValueChanged += new System.EventHandler(this.TimeUD_ValueChanged);
             // 
             // ProductQuantityLabel
             // 
             this.ProductQuantityLabel.AutoSize = true;
-            this.ProductQuantityLabel.Location = new System.Drawing.Point(601, 38);
-            this.ProductQuantityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ProductQuantityLabel.Location = new System.Drawing.Point(451, 31);
             this.ProductQuantityLabel.Name = "ProductQuantityLabel";
-            this.ProductQuantityLabel.Size = new System.Drawing.Size(114, 17);
+            this.ProductQuantityLabel.Size = new System.Drawing.Size(86, 13);
             this.ProductQuantityLabel.TabIndex = 9;
             this.ProductQuantityLabel.Text = "Product Quantity";
             // 
             // ProductQuantityUD
             // 
-            this.ProductQuantityUD.Location = new System.Drawing.Point(723, 36);
-            this.ProductQuantityUD.Margin = new System.Windows.Forms.Padding(4);
+            this.ProductQuantityUD.Location = new System.Drawing.Point(542, 29);
             this.ProductQuantityUD.Maximum = new decimal(new int[] {
             -1486618625,
             232830643,
@@ -232,7 +217,7 @@
             0,
             0});
             this.ProductQuantityUD.Name = "ProductQuantityUD";
-            this.ProductQuantityUD.Size = new System.Drawing.Size(108, 22);
+            this.ProductQuantityUD.Size = new System.Drawing.Size(81, 20);
             this.ProductQuantityUD.TabIndex = 8;
             this.ProductQuantityUD.Value = new decimal(new int[] {
             1,
@@ -244,20 +229,18 @@
             // ProductsLabel
             // 
             this.ProductsLabel.AutoSize = true;
-            this.ProductsLabel.Location = new System.Drawing.Point(210, 34);
-            this.ProductsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ProductsLabel.Location = new System.Drawing.Point(158, 28);
             this.ProductsLabel.Name = "ProductsLabel";
-            this.ProductsLabel.Size = new System.Drawing.Size(64, 17);
+            this.ProductsLabel.Size = new System.Drawing.Size(49, 13);
             this.ProductsLabel.TabIndex = 10;
             this.ProductsLabel.Text = "Products";
             // 
             // IngredientsLabel
             // 
             this.IngredientsLabel.AutoSize = true;
-            this.IngredientsLabel.Location = new System.Drawing.Point(405, 34);
-            this.IngredientsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.IngredientsLabel.Location = new System.Drawing.Point(304, 28);
             this.IngredientsLabel.Name = "IngredientsLabel";
-            this.IngredientsLabel.Size = new System.Drawing.Size(78, 17);
+            this.IngredientsLabel.Size = new System.Drawing.Size(59, 13);
             this.IngredientsLabel.TabIndex = 11;
             this.IngredientsLabel.Text = "Ingredients";
             // 
@@ -266,39 +249,44 @@
             this.saveCheckBox.AutoSize = true;
             this.saveCheckBox.Checked = true;
             this.saveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.saveCheckBox.Location = new System.Drawing.Point(13, 218);
+            this.saveCheckBox.Location = new System.Drawing.Point(10, 177);
+            this.saveCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.saveCheckBox.Name = "saveCheckBox";
-            this.saveCheckBox.Size = new System.Drawing.Size(108, 21);
+            this.saveCheckBox.Size = new System.Drawing.Size(86, 17);
             this.saveCheckBox.TabIndex = 12;
             this.saveCheckBox.Text = "Save on Exit";
             this.saveCheckBox.UseVisualStyleBackColor = true;
+            this.saveCheckBox.Visible = false;
             this.saveCheckBox.CheckedChanged += new System.EventHandler(this.SaveCheckBox_CheckedChanged);
             // 
             // debugPanel
             // 
             this.debugPanel.Controls.Add(this.englishDebugLabel);
             this.debugPanel.Controls.Add(this.cultureLabel);
-            this.debugPanel.Location = new System.Drawing.Point(604, 137);
+            this.debugPanel.Location = new System.Drawing.Point(453, 111);
+            this.debugPanel.Margin = new System.Windows.Forms.Padding(2);
             this.debugPanel.Name = "debugPanel";
-            this.debugPanel.Size = new System.Drawing.Size(299, 331);
+            this.debugPanel.Size = new System.Drawing.Size(224, 269);
             this.debugPanel.TabIndex = 13;
             this.debugPanel.Visible = false;
             // 
             // englishDebugLabel
             // 
             this.englishDebugLabel.AutoSize = true;
-            this.englishDebugLabel.Location = new System.Drawing.Point(3, 21);
+            this.englishDebugLabel.Location = new System.Drawing.Point(2, 17);
+            this.englishDebugLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.englishDebugLabel.Name = "englishDebugLabel";
-            this.englishDebugLabel.Size = new System.Drawing.Size(87, 17);
+            this.englishDebugLabel.Size = new System.Drawing.Size(65, 13);
             this.englishDebugLabel.TabIndex = 1;
             this.englishDebugLabel.Text = "english label";
             // 
             // cultureLabel
             // 
             this.cultureLabel.AutoSize = true;
-            this.cultureLabel.Location = new System.Drawing.Point(3, 4);
+            this.cultureLabel.Location = new System.Drawing.Point(2, 3);
+            this.cultureLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cultureLabel.Name = "cultureLabel";
-            this.cultureLabel.Size = new System.Drawing.Size(112, 17);
+            this.cultureLabel.Size = new System.Drawing.Size(83, 13);
             this.cultureLabel.TabIndex = 0;
             this.cultureLabel.Text = "english probably";
             // 
@@ -310,7 +298,8 @@
             this.viewToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(915, 28);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(686, 24);
             this.menuStrip.TabIndex = 14;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -320,31 +309,34 @@
             this.stripFileSave,
             this.stripSaveOnExit});
             this.stripFile.Name = "stripFile";
-            this.stripFile.Size = new System.Drawing.Size(46, 24);
+            this.stripFile.Size = new System.Drawing.Size(37, 20);
             this.stripFile.Text = "File";
             // 
             // stripFileSave
             // 
             this.stripFileSave.Name = "stripFileSave";
-            this.stripFileSave.Size = new System.Drawing.Size(225, 26);
+            this.stripFileSave.Size = new System.Drawing.Size(180, 22);
             this.stripFileSave.Text = "Save";
+            this.stripFileSave.Click += new System.EventHandler(this.StripFileSave_Click);
             // 
             // stripSaveOnExit
             // 
+            this.stripSaveOnExit.Checked = true;
             this.stripSaveOnExit.CheckOnClick = true;
+            this.stripSaveOnExit.CheckState = System.Windows.Forms.CheckState.Checked;
             this.stripSaveOnExit.Name = "stripSaveOnExit";
-            this.stripSaveOnExit.Size = new System.Drawing.Size(224, 26);
+            this.stripSaveOnExit.Size = new System.Drawing.Size(180, 22);
             this.stripSaveOnExit.Text = "Save on Exit";
+            this.stripSaveOnExit.CheckedChanged += new System.EventHandler(this.SaveCheckBox_CheckedChanged);
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleToolStripMenuItem});
-            this.viewToolStripMenuItem.Enabled = false;
+            this.scaleToolStripMenuItem,
+            this.languageToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
-            this.viewToolStripMenuItem.Visible = false;
             // 
             // scaleToolStripMenuItem
             // 
@@ -355,45 +347,53 @@
             this.toolStripSeparator1,
             this.toolStripTextBox1});
             this.scaleToolStripMenuItem.Name = "scaleToolStripMenuItem";
-            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.scaleToolStripMenuItem.Text = "Scale";
+            this.scaleToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(174, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
             this.toolStripMenuItem2.Text = "75%";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(174, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(160, 22);
             this.toolStripMenuItem3.Text = "100%";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(174, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(160, 22);
             this.toolStripMenuItem4.Text = "125%";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
             this.toolStripTextBox1.Text = "not implemented";
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.languageToolStripMenuItem.Text = "Language";
+            this.languageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(915, 480);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.debugPanel);
             this.Controls.Add(this.saveCheckBox);
             this.Controls.Add(this.IngredientsLabel);
@@ -415,7 +415,6 @@
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -468,6 +467,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripMenuItem stripSaveOnExit;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
     }
 }
 
