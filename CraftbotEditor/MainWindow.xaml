@@ -3,13 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CraftbotEditor"
+        xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:namespace="clr-namespace:CraftbotEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="887" Width="1224"
+        Title="SMEMT Craftbot Editor" Height="887" Width="1545"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         >
-    <Grid>
-        <Image Name="MainBackgroundImage" HorizontalAlignment="Left" Height="887" VerticalAlignment="Top" Width="1224"/>
+    <Window.Resources>
+        <system:String x:Key="VersionStringSpaced">0 . 3 . 0</system:String>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" Width="1545">
+        <Grid Margin="0,0,306,0">
+            <Image Name="MainBackgroundImage" VerticalAlignment="Top" Source="file:///C:/Program Files (x86)/Steam/steamapps/common/Scrap Mechanic/Data/Gui/Resolutions/3840x2160/BackgroundImages/gui_background_craftbot.png" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <TextBlock x:Name="StationLabel" Text="C R A F T B O T   E D I T O R" FontFamily="Shentox" FontSize="36" Margin="520,99,111,749" Background="#00000000" Foreground="White" FontWeight="Medium" TextAlignment="Center" />
+            <TextBlock x:Name="VersionLabel" Text="V E R S I O N   0 . 3 . 0" FontFamily="Shentox" FontSize="18" Margin="520,153,111,712" Background="#00000000" Foreground="#FFFFCD3F" FontWeight="Medium" TextAlignment="Center" />
+            <WrapPanel Name="RecipeWrap" Margin="54,263,50,181">
 
+            </WrapPanel>
+        </Grid>
+        <Grid Name="TooltipGrid" Margin="1244,42,0,0">
+            <Image Name="TooltipBackground" Source="file:///C:/Program Files (x86)/Steam/steamapps/common/Scrap Mechanic/Data/Gui/Resolutions/3840x2160/BackgroundImages/gui_background_craftbot_tooltip.png" Margin="0,10,-10,0" Width="300" Height="838"/>
+            <Grid Name="TooltipContentGrid" Margin="1239,49,0,0">
+                <TextBlock x:Name="RecipeItemLabel" Text="Recipe Product" FontFamily="Shentox" FontSize="22" Margin="-1233,192,933,577" Background="#00000000" Foreground="White" FontStretch="SemiExpanded" FontWeight="Medium" />
+                <!--TODO: 3d somehow eventually-->
+                <Image Name="ItemViewport" Margin="-1213,-36,958,577" Width="255" Height="255" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

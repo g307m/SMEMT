@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelixToolkit.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -24,12 +26,15 @@ namespace CraftbotEditor
         public MainWindow()
         {
             InitializeComponent();
+            // Style
+            
             // Loading data
             GameData.Load();
-            MainBackgroundImage.Source   = GameData.CraftbotMainBackground;
+            MainBackgroundImage.Source   = GameData.MainBackground;
 
             // Event stuff
-            MainBackgroundImage.MouseDown += Mbi_MouseDown;
+            //MainBackgroundImage.MouseDown += Mbi_MouseDown;
+            
         }
 
         // Dragging

@@ -31,8 +31,11 @@ namespace CraftbotEditor
         public static List<Recipe> CraftbotDocument;
 
         // Background images
-        public static BitmapImage CraftbotMainBackground      = new BitmapImage();
-        public static BitmapImage CraftbotSecondaryBackground = new BitmapImage();
+        public static BitmapImage MainBackground;
+        public static BitmapImage SecondaryBackground;
+
+        // GUI images
+        public static BitmapImage[] ProductBackground = new BitmapImage[1];
 
         public static void Load()
         {
@@ -64,7 +67,8 @@ namespace CraftbotEditor
                 */
 
                 // I don't currently have a secondary drive to see if this code would even work, so it's left out for the time being. -Grant
-                MessageBox.Show("Either you don't have Scrap Mechanic installed, or you have it installed on another drive.\nThis is not a bug, please do not report this.", "Game not found!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Either you don't have Scrap Mechanic installed, or you have it installed on another drive.\n" +
+                    "This is not a bug, please do not report this.", "Game not found!", MessageBoxButton.OK, MessageBoxImage.Error);
                 Application.Current.Shutdown();
             }
 
@@ -74,18 +78,15 @@ namespace CraftbotEditor
             RecipePath = SurvivalPath + "\\CraftingRecipes";
 
             // Loading necessary data
-            item_names = JsonConvert.DeserializeObject<Dictionary<String,String>>(File.ReadAllText(RecipePath + "\\item_names.json"));
+            item_names = JsonConvert.DeserializeObject<Dictionary<String, String>>(File.ReadAllText(RecipePath + "\\item_names.json"));
             CraftbotDocument = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(RecipePath + "\\craftbot.json"));
 
-            // Loading images
-            // Main Background
-            CraftbotMainBackground.BeginInit();
-            CraftbotMainBackground.UriSource = new Uri(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
-            CraftbotMainBackground.EndInit();
-            // Secondary Background
-            CraftbotSecondaryBackground.BeginInit();
-            CraftbotSecondaryBackground.UriSource = new Uri(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
-            CraftbotSecondaryBackground.EndInit();
+            // Background images
+            MainBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
+            SecondaryBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
+
+            // GUI element images
+
         }
     }
 }
