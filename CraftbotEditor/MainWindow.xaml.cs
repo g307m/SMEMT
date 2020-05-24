@@ -24,8 +24,19 @@ namespace CraftbotEditor
         public MainWindow()
         {
             InitializeComponent();
+            // Loading data
             GameData.Load();
-            MainBackgroundImage = GameData.CraftbotMainBackground;
+            MainBackgroundImage.Source   = GameData.CraftbotMainBackground;
+
+            // Event stuff
+            MainBackgroundImage.MouseDown += Mbi_MouseDown;
+        }
+
+        // Dragging
+        private void Mbi_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
         }
     }
 }

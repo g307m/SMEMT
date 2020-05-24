@@ -31,8 +31,8 @@ namespace CraftbotEditor
         public static List<Recipe> CraftbotDocument;
 
         // Background images
-        public static Image CraftbotMainBackground;
-        public static Image CraftbotSecondaryBackground;
+        public static BitmapImage CraftbotMainBackground      = new BitmapImage();
+        public static BitmapImage CraftbotSecondaryBackground = new BitmapImage();
 
         public static void Load()
         {
@@ -78,7 +78,14 @@ namespace CraftbotEditor
             CraftbotDocument = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(RecipePath + "\\craftbot.json"));
 
             // Loading images
-            CraftbotMainBackground.Source = new BitmapImage(new Uri(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png"));
+            // Main Background
+            CraftbotMainBackground.BeginInit();
+            CraftbotMainBackground.UriSource = new Uri(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
+            CraftbotMainBackground.EndInit();
+            // Secondary Background
+            CraftbotSecondaryBackground.BeginInit();
+            CraftbotSecondaryBackground.UriSource = new Uri(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
+            CraftbotSecondaryBackground.EndInit();
         }
     }
 }
