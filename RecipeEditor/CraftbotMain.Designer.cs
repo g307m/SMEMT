@@ -1,6 +1,6 @@
 ﻿namespace RecipeEditor
 {
-    partial class Form1
+    partial class CraftbotMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -48,23 +48,12 @@
             this.debugPanel = new System.Windows.Forms.Panel();
             this.englishDebugLabel = new System.Windows.Forms.Label();
             this.cultureLabel = new System.Windows.Forms.Label();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.stripFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripFileSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripSaveOnExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BackBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuantityUD)).BeginInit();
             this.debugPanel.SuspendLayout();
-            this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BackBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ItemBox
@@ -290,110 +279,22 @@
             this.cultureLabel.TabIndex = 0;
             this.cultureLabel.Text = "english probably";
             // 
-            // menuStrip
+            // BackBox
             // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stripFile,
-            this.viewToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(686, 24);
-            this.menuStrip.TabIndex = 14;
-            this.menuStrip.Text = "menuStrip1";
+            this.BackBox.BackColor = System.Drawing.Color.Transparent;
+            this.BackBox.Location = new System.Drawing.Point(0, 0);
+            this.BackBox.Name = "BackBox";
+            this.BackBox.Size = new System.Drawing.Size(1176, 887);
+            this.BackBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.BackBox.TabIndex = 15;
+            this.BackBox.TabStop = false;
             // 
-            // stripFile
-            // 
-            this.stripFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stripFileSave,
-            this.stripSaveOnExit});
-            this.stripFile.Name = "stripFile";
-            this.stripFile.Size = new System.Drawing.Size(37, 20);
-            this.stripFile.Text = "File";
-            // 
-            // stripFileSave
-            // 
-            this.stripFileSave.Name = "stripFileSave";
-            this.stripFileSave.Size = new System.Drawing.Size(180, 22);
-            this.stripFileSave.Text = "Save";
-            this.stripFileSave.Click += new System.EventHandler(this.StripFileSave_Click);
-            // 
-            // stripSaveOnExit
-            // 
-            this.stripSaveOnExit.Checked = true;
-            this.stripSaveOnExit.CheckOnClick = true;
-            this.stripSaveOnExit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.stripSaveOnExit.Name = "stripSaveOnExit";
-            this.stripSaveOnExit.Size = new System.Drawing.Size(180, 22);
-            this.stripSaveOnExit.Text = "Save on Exit";
-            this.stripSaveOnExit.CheckedChanged += new System.EventHandler(this.SaveCheckBox_CheckedChanged);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleToolStripMenuItem,
-            this.languageToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // scaleToolStripMenuItem
-            // 
-            this.scaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.toolStripSeparator1,
-            this.toolStripTextBox1});
-            this.scaleToolStripMenuItem.Name = "scaleToolStripMenuItem";
-            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.scaleToolStripMenuItem.Text = "Scale";
-            this.scaleToolStripMenuItem.Visible = false;
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem2.Text = "75%";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem3.Text = "100%";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem4.Text = "125%";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox1.Text = "not implemented";
-            // 
-            // languageToolStripMenuItem
-            // 
-            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.languageToolStripMenuItem.Text = "Language";
-            this.languageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
-            // 
-            // Form1
+            // CraftbotMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.ClientSize = new System.Drawing.Size(1224, 887);
             this.Controls.Add(this.debugPanel);
             this.Controls.Add(this.saveCheckBox);
             this.Controls.Add(this.IngredientsLabel);
@@ -412,12 +313,11 @@
             this.Controls.Add(this.IngredientBox);
             this.Controls.Add(this.RecipeBox);
             this.Controls.Add(this.ItemBox);
-            this.Controls.Add(this.menuStrip);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.menuStrip;
+            this.Controls.Add(this.BackBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "CraftbotMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMEMT:  Recipe Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -427,8 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuantityUD)).EndInit();
             this.debugPanel.ResumeLayout(false);
             this.debugPanel.PerformLayout();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BackBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,18 +355,7 @@
         private System.Windows.Forms.Panel debugPanel;
         private System.Windows.Forms.Label cultureLabel;
         private System.Windows.Forms.Label englishDebugLabel;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem stripFile;
-        private System.Windows.Forms.ToolStripMenuItem stripFileSave;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scaleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripMenuItem stripSaveOnExit;
-        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.PictureBox BackBox;
     }
 }
 

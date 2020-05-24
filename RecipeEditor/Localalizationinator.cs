@@ -27,7 +27,7 @@ namespace RecipeEditor
         public static void Load()
         {
             // put the current language file in languagedocument
-            languagesjson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Data\\Gui\\Language\\languages.json"));
+            languagesjson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(CraftbotMain.SmPath + "Data\\Gui\\Language\\languages.json"));
             JObject languagedocument;
             String language;
             if (Settings.Default.Language.Length != 0)
@@ -39,8 +39,8 @@ namespace RecipeEditor
                 else
                     language = languagesjson[lang].ToString();
             }
-            languagedocument = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + $"Data\\Gui\\Language\\{language}\\InventoryItemDescriptions.json"));
-            JObject survivaldoc = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Form1.SmPath + "Survival\\Gui\\Language\\English\\inventoryDescriptions.json"));
+            languagedocument = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(CraftbotMain.SmPath + $"Data\\Gui\\Language\\{language}\\InventoryItemDescriptions.json"));
+            JObject survivaldoc = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(CraftbotMain.SmPath + "Survival\\Gui\\Language\\English\\inventoryDescriptions.json"));
             languagedocument.Merge(survivaldoc);
             // oh cool, dictionaries
             List<String> forthefor = DataClass.ItemDictionary.Keys.ToList();

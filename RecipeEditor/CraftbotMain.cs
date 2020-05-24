@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,8 +17,19 @@ using System.Windows.Forms;
 // Can I just say how incredibly hard it is to separate this out into multiple files for me?
 namespace RecipeEditor
 {
-    public partial class Form1 : Form
+    public partial class CraftbotMain : Form
     {
+        // Background stuff
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            //base.OnPaintBackground(e);
+        }
+        
+        private void ScrapGuiLoad()
+        {
+            BackBox.Image = Image.FromFile(SmPath+ "Data\\Gui\\Resolutions\\1920x1080\\BackgroundImages\\gui_background_craftbot.png");
+            BackBox.BackColor = Color.Transparent;
+        }
 
         String AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         String SmemtData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SMEMT\\";
@@ -27,9 +39,10 @@ namespace RecipeEditor
             debugPanel.Controls["englishDebugLabel"].Text = "english: " + Localization.lang;
             debugPanel.Show();
         }
-        public Form1()
+        public CraftbotMain()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             if (Resources.Deboolg == "true") ShowDebug();
         }
         String SteamInstallPath;
@@ -103,6 +116,7 @@ namespace RecipeEditor
             this.Text = $"SMEMT v{Resources.VersionString}: Recipe Editor";
             //MyRegistry.Startup();
             GetCraftbotPath();
+            ScrapGuiLoad();
             CraftbotBackup();//broken
             DataClass.ItemDictInit();
             Localization.Load();
