@@ -6,23 +6,35 @@ using System.Threading.Tasks;
 
 namespace CraftbotEditor
 {
-    class Item
+    public class Item
     {
-        public String itemId;
+        private String ItemId;
         public int quantity = 1;
-        public int craftTime = 2;
+        public String itemId
+        {
+            get { return ItemId;}
+            set { OnItemChanged(EventArgs.Empty); ItemId = value; }
+        }
+        public Item() { }
         public Item(String itemId)
         {
-            this.itemId = itemId;
+            this.ItemId = itemId;
+        }
+        // pretty much just for icon changing
+        public event EventHandler ItemChanged;
+        protected virtual void OnItemChanged(EventArgs e)
+        {
+            EventHandler handler = ItemChanged;
+            handler?.Invoke(this, e);
         }
     }
-    class Recipe
+    public class Recipe : Item
     {
-        Item product;
-        List<Item> ingredientList = new List<Item>();
+        public int craftTime = 2;
+        public List<Item> ingredientList = new List<Item>();
         public Recipe(String itemId)
         {
-            product = new Item(itemId);
+            this.itemId = itemId;
         }
     }
 }

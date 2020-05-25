@@ -1,6 +1,9 @@
-﻿using HelixToolkit.Wpf;
+﻿using CraftbotEditor.Properties;
+using HelixToolkit.Wpf;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,22 +29,26 @@ namespace CraftbotEditor
         public MainWindow()
         {
             InitializeComponent();
-            // Style
-            
             // Loading data
             GameData.Load();
             MainBackgroundImage.Source   = GameData.MainBackground;
-
-            // Event stuff
-            //MainBackgroundImage.MouseDown += Mbi_MouseDown;
-            
+            RecipeItems.ItemsSource = GameData.RecipeList;
+            // recipe loading
+            foreach (Recipe recipe in GameData.CraftbotDocument)
+            {
+                {
+                    RecipeButtonControl recipeButtonControl = new RecipeButtonControl(recipe);
+                    if (!GameData.RecipeList.Contains(recipeButtonControl))
+                        GameData.RecipeList.Add(recipeButtonControl);
+                }
+            }
+            GameData.RecipeList.ForEach(a => a.off());
+            GameData.RecipeList[0].on();
         }
 
-        // Dragging
-        private void Mbi_MouseDown(object sender, MouseButtonEventArgs e)
+        public static void ShowRecipe(String itemId)
         {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
+
         }
     }
 }

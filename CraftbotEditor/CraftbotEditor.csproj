@@ -47,12 +47,18 @@
     <Reference Include="HelixToolkit.Wpf, Version=2.11.0.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
       <HintPath>..\packages\HelixToolkit.Wpf.2.11.0\lib\net45\HelixToolkit.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="ImageProcessor, Version=2.9.0.207, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.9.0\lib\net452\ImageProcessor.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -76,6 +82,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CraftbotResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Localization.cs" />
+    <Compile Include="RecicpeButtonControl.xaml.cs">
+      <DependentUpon>RecicpeButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Relief.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +100,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RecicpeButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects.cs" />
@@ -121,7 +135,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Resource Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameStuff\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecipeSelected.png" />
+    <Resource Include="RecipeNormal.png" />
+    <Content Include="Resources\RecipeSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\RecipeNormal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

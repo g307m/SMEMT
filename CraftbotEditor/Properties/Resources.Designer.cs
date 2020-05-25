@@ -70,6 +70,26 @@ namespace CraftbotEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RecipeNormal {
+            get {
+                object obj = ResourceManager.GetObject("RecipeNormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RecipeSelected {
+            get {
+                object obj = ResourceManager.GetObject("RecipeSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0.3.0.
         /// </summary>
         public static string VersionString {

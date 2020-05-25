@@ -1,24 +1,19 @@
-﻿using Gameloop.Vdf;
-using Gameloop.Vdf.Linq;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xml;
 
 namespace CraftbotEditor
 {
     //TODO: make this a generic class for different stations
     class GameData
     {
+
+        public static List<RecipeButtonControl> RecipeList = new List<RecipeButtonControl>();
         // path strings
         public static String SteamPath; // Probably doesn't fit well, but it's going here anyways.
         public static String GamePath;
@@ -33,9 +28,6 @@ namespace CraftbotEditor
         // Background images
         public static BitmapImage MainBackground;
         public static BitmapImage SecondaryBackground;
-
-        // GUI images
-        public static BitmapImage[] ProductBackground = new BitmapImage[1];
 
         public static void Load()
         {
@@ -86,7 +78,8 @@ namespace CraftbotEditor
             SecondaryBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
 
             // GUI element images
-
+            BitmapImage skin = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\gui_skin_3840x2160.png");
+            ItemMapMargin.itemXml.LoadXml(File.ReadAllText(SurvivalPath + "\\Gui\\IconMapSurvival.xml"));
         }
     }
 }
