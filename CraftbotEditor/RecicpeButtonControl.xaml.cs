@@ -51,6 +51,12 @@ namespace CraftbotEditor
             displayedProduct = item;
             this.ItemImage.ItemSheet.Margin = ItemMapMargin.itemThickness(item.itemId);
         }
+        public RecipeButtonControl(String itemId)
+        {
+            InitializeComponent();
+            displayedProduct = new Item(itemId);
+            this.ItemImage.ItemSheet.Margin = ItemMapMargin.itemThickness(itemId);
+        }
 
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {

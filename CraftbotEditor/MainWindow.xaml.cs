@@ -46,6 +46,9 @@ namespace CraftbotEditor
             }
             GameData.RecipeList.ForEach(a => a.off());
             GameData.RecipeList[0].on();
+
+            // stuff
+            ItemViewport.ItemSheet.Source = GameData.ItemMap;
         }
         Localization localization;
         public void ShowRecipe(String itemId)
@@ -55,6 +58,12 @@ namespace CraftbotEditor
                 RecipeItemLabel.Text = localization.ItemDescriptions[itemId]["title"].ToString();
             if (localization.ItemDescriptions[itemId]["description"] != null)
                 Descripton.Text = localization.ItemDescriptions[itemId]["description"].ToString();
+            ItemViewport.ItemSheet.Margin = ItemMapMargin.itemThickness(itemId);
+        }
+
+        private void AddRemoveRecipe_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

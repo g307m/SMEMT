@@ -15,24 +15,25 @@
         <system:String x:Key="VersionStringSpaced">0 . 3 . 0</system:String>
     </Window.Resources>
     <Grid HorizontalAlignment="Left" Width="1545">
+        <Rectangle x:Name="this_prevents_clicking_through_the_window" Fill="#00F4F4F5" HorizontalAlignment="Left" Height="887" Stroke="#00000000" VerticalAlignment="Top" Width="1545" Opacity="0"/>
         <Grid Margin="0,0,306,0">
-            <Image Name="MainBackgroundImage" VerticalAlignment="Top" Source="file:///C:/Program Files (x86)/Steam/steamapps/common/Scrap Mechanic/Data/Gui/Resolutions/3840x2160/BackgroundImages/gui_background_craftbot.png" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <Image x:Name="MainBackgroundImage" VerticalAlignment="Top" Source="file:///C:/Program Files (x86)/Steam/steamapps/common/Scrap Mechanic/Data/Gui/Resolutions/3840x2160/BackgroundImages/gui_background_craftbot.png" HorizontalAlignment="Left" Margin="10,0,0,0"/>
             <TextBlock x:Name="StationLabel" Text="C R A F T B O T   E D I T O R" FontFamily="Shentox" FontSize="36" Margin="520,99,111,749" Background="#00000000" Foreground="White" FontWeight="Medium" TextAlignment="Center" />
             <TextBlock x:Name="VersionLabel" Text="S M E M T   V E R S I O N   0 . 3 . 0" FontFamily="Shentox" FontSize="18" Margin="520,153,111,712" Background="#00000000" Foreground="#FFFFCD3F" FontWeight="Medium" TextAlignment="Center" />
-            <ScrollViewer Margin="105,313,54,181" Width="1080" >
-            <ItemsControl x:Name="RecipeItems" ItemsSource="{Binding}" Width="1080">
-                
-                <ItemsControl.ItemsPanel>
-                    
-                    <ItemsPanelTemplate>
-                        
-                            <WrapPanel Name="RecipeWrap" IsItemsHost="True" ItemHeight="108" ItemWidth="108" />
-                        
-                    </ItemsPanelTemplate>
-                    
-                </ItemsControl.ItemsPanel>
-                
-            </ItemsControl>
+            <ScrollViewer Margin="105,313,34,181" Width="1100" >
+                <ItemsControl x:Name="RecipeItems" ItemsSource="{Binding}" Width="1080">
+
+                    <ItemsControl.ItemsPanel>
+
+                        <ItemsPanelTemplate>
+
+                            <WrapPanel x:Name="RecipeWrap" IsItemsHost="True" ItemHeight="108" ItemWidth="108" />
+
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
             </ScrollViewer>
         </Grid>
         <Grid x:Name="TooltipGrid" Margin="1244,42,0,0">
@@ -40,7 +41,7 @@
             <Grid x:Name="TooltipContentGrid" Margin="1239,49,0,0">
                 <TextBlock x:Name="RecipeItemLabel" Text="Recipe Product" FontFamily="Shentox" FontSize="22" Margin="-1229,192,939,577" Background="#00000000" Foreground="White" FontStretch="SemiExpanded" FontWeight="Medium" />
                 <!--TODO: 3d somehow eventually-->
-                <Image Name="ItemViewport" Margin="-1213,-36,958,577" Width="255" Height="255" />
+                <namespace:ItemImage x:Name="ItemViewport" Margin="-1213,-36,958,577" Width="255" Height="255" />
                 <TextBlock x:Name="DescriptionLabel" Text="DESCRIPTION" FontFamily="Shentox" FontSize="18" Margin="-1229,224,939,545" Background="#00000000" Foreground="White" FontStretch="SemiExpanded" />
                 <TextBlock x:Name="Descripton" Text="This is where the description is supposed to be. If you're a normal user, please create an issue on Github describing how you got here." FontFamily="Shentox" FontSize="18" Margin="-1229,256,939,136" Background="#00000000" Foreground="White" FontStretch="SemiExpanded" TextWrapping="Wrap" />
 
@@ -58,6 +59,10 @@
 
                 </ItemsControl>
             </Grid>
+            <Button x:Name="AddRemoveRecipe" Content="Button" HorizontalAlignment="Left" Height="20" Margin="0,803,0,0" VerticalAlignment="Top" Width="150" Click="AddRemoveRecipe_Click"/>
+            <Button x:Name="AddRemoveIngredient" Content="Button" HorizontalAlignment="Left" Height="20" Margin="150,803,0,0" VerticalAlignment="Top" Width="150" Click="AddRemoveRecipe_Click"/>
+            <Button x:Name="AddRemoveRecipe_Copy" Content="Button" HorizontalAlignment="Left" Height="20" Margin="0,823,0,0" VerticalAlignment="Top" Width="150" Click="AddRemoveRecipe_Click"/>
+            <Button x:Name="AddRemoveIngredient_Copy" Content="Button" HorizontalAlignment="Left" Height="20" Margin="150,823,0,0" VerticalAlignment="Top" Width="150" Click="AddRemoveRecipe_Click"/>
         </Grid>
     </Grid>
 </Window>

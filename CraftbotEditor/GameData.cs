@@ -29,6 +29,9 @@ namespace CraftbotEditor
         public static BitmapImage MainBackground;
         public static BitmapImage TooltipBackground;
 
+        // Static UI elements
+        public static BitmapImage ItemMap;
+
         public static void Load()
         {
             // Gets Steam path from the registry
@@ -80,6 +83,7 @@ namespace CraftbotEditor
             // GUI element images
             BitmapImage skin = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\gui_skin_3840x2160.png");
             ItemMapMargin.itemXml.LoadXml(File.ReadAllText(SurvivalPath + "\\Gui\\IconMapSurvival.xml"));
+            ItemMap = GoodImage.FromFile(SurvivalPath + "\\Gui\\IconMapSurvival.png");
         }
     }
 }
