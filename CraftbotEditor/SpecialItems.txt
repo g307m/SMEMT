@@ -1,0 +1,4 @@
+﻿id h-offset v-offset [literally whatever else the program doesn't fricking care]
+8c7efc37-cd7c-4262-976e-39585f8527bf 3936 1728
+c60b9627-fc2b-4319-97c5-05921cb976c6 2880 1728
+fdb8b8be-96e7-4de0-85c7-d2f42e4f33ce 0 0

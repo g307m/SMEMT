@@ -31,10 +31,12 @@ namespace CraftbotEditor
             InitializeComponent();
             // Loading data
             GameData.Load();
-            MainBackgroundImage.Source   = GameData.MainBackground;
+            localization = new Localization();
+            MainBackgroundImage.Source = GameData.MainBackground;
+            TooltipBackgroundImage.Source = GameData.TooltipBackground;
             RecipeItems.ItemsSource = GameData.RecipeList;
             // recipe loading
-            foreach (Recipe recipe in GameData.CraftbotDocument)
+            foreach (Recipe recipe in GameData.WorkstationDocument)
             {
                 {
                     RecipeButtonControl recipeButtonControl = new RecipeButtonControl(recipe);
@@ -45,10 +47,14 @@ namespace CraftbotEditor
             GameData.RecipeList.ForEach(a => a.off());
             GameData.RecipeList[0].on();
         }
-
-        public static void ShowRecipe(String itemId)
+        Localization localization;
+        public void ShowRecipe(String itemId)
         {
-
+            Debug.Print("Showing recipe for " + itemId + $"({localization.GetBaseName(itemId)})");
+            if (localization.ItemDescriptions[itemId]["title"] != null)
+                RecipeItemLabel.Text = localization.ItemDescriptions[itemId]["title"].ToString();
+            if (localization.ItemDescriptions[itemId]["description"] != null)
+                Descripton.Text = localization.ItemDescriptions[itemId]["description"].ToString();
         }
     }
 }

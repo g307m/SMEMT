@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="CraftbotEditor.ItemImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CraftbotEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="108" d:DesignWidth="108">
+    <Grid>
+        <Viewbox StretchDirection="Both" Stretch="Uniform">
+            <Border ClipToBounds="True" Margin="10" Height="108" Width="108">
+                <Image Name="ItemSheet" Source="C:\Program Files (x86)\Steam\steamapps\common\Scrap Mechanic\Survival\Gui\IconMapSurvival.png" Margin="0,-838,-4500,-3035" Width="4608"/>
+            </Border>
+        </Viewbox>
+    </Grid>
+</UserControl>

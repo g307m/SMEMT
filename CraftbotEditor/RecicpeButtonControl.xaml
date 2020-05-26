@@ -10,11 +10,7 @@
         <Image x:Name="RecipeNormalImage" Source="RecipeNormal.png" Visibility="Visible"/>
         <Image x:Name="RecipeSelectedImage" Source="RecipeSelected.png" Visibility="Hidden"/>
         <!-- The easier, definitely lazier way: moving the icon map -->
-        <Viewbox StretchDirection="Both" Stretch="Uniform">
-            <Border ClipToBounds="True" Margin="10" Height="108" Width="108">
-                <Image Name="ItemImage" Source="C:\Program Files (x86)\Steam\steamapps\common\Scrap Mechanic\Survival\Gui\IconMapSurvival.png" Margin="0,-838,-4500,-3035" Width="4608"/>
-            </Border>
-        </Viewbox>
+        <local:ItemImage x:Name="ItemImage"/>
         <Button x:Name="SelectionButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Height="108" Opacity="0" Click="SelectionButton_Click"/>
     </Grid>
 </UserControl>

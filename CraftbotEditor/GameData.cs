@@ -23,11 +23,11 @@ namespace CraftbotEditor
 
         // Loaded data
         public static Dictionary<String,String> item_names;
-        public static List<Recipe> CraftbotDocument;
+        public static List<Recipe> WorkstationDocument;
 
         // Background images
         public static BitmapImage MainBackground;
-        public static BitmapImage SecondaryBackground;
+        public static BitmapImage TooltipBackground;
 
         public static void Load()
         {
@@ -71,11 +71,11 @@ namespace CraftbotEditor
 
             // Loading necessary data
             item_names = JsonConvert.DeserializeObject<Dictionary<String, String>>(File.ReadAllText(RecipePath + "\\item_names.json"));
-            CraftbotDocument = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(RecipePath + "\\craftbot.json"));
+            WorkstationDocument = JsonConvert.DeserializeObject<List<Recipe>>(File.ReadAllText(RecipePath + "\\craftbot.json"));
 
             // Background images
             MainBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
-            SecondaryBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot.png");
+            TooltipBackground = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\BackgroundImages\\gui_background_craftbot_tooltip.png");
 
             // GUI element images
             BitmapImage skin = GoodImage.FromFile(DataPath + "\\Gui\\Resolutions\\3840x2160\\gui_skin_3840x2160.png");

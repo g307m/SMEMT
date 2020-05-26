@@ -59,6 +59,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,11 +83,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CraftbotResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ItemImage.xaml.cs">
+      <DependentUpon>ItemImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LabelledItemImage.xaml.cs">
+      <DependentUpon>LabelledItemImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Localization.cs" />
     <Compile Include="RecicpeButtonControl.xaml.cs">
       <DependentUpon>RecicpeButtonControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Relief.cs" />
+    <Page Include="ItemImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabelledItemImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -141,6 +156,9 @@
     <Folder Include="GameStuff\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SpecialItems.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="RecipeSelected.png" />
     <Resource Include="RecipeNormal.png" />
     <Content Include="Resources\RecipeSelected.png" />

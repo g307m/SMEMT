@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace CraftbotEditor
     {
         public Item displayedProduct;
         bool selected = false;
+        // As always, thanks to Yasahiro.
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
         public void toggle()
         {
             if (selected)
@@ -35,7 +38,7 @@ namespace CraftbotEditor
         {
             RecipeNormalImage.Visibility = Visibility.Hidden;
             RecipeSelectedImage.Visibility = Visibility.Visible;
-            MainWindow.ShowRecipe(displayedProduct.itemId);
+            mainWindow.ShowRecipe(displayedProduct.itemId);
         }
         public void off()
         {
@@ -46,7 +49,7 @@ namespace CraftbotEditor
         {
             InitializeComponent();
             displayedProduct = item;
-            this.ItemImage.Margin = ItemMapMargin.itemThickness(item.itemId);
+            this.ItemImage.ItemSheet.Margin = ItemMapMargin.itemThickness(item.itemId);
         }
 
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
