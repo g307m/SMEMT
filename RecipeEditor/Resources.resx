@@ -121,7 +121,7 @@
     <value>false</value>
   </data>
   <data name="VersionString" xml:space="preserve">
-    <value>0.2.0</value>
-    <comment>Localization update</comment>
+    <value>0.2.1</value>
+    <comment>Localization update, selection</comment>
   </data>
 </root>
