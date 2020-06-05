@@ -70,7 +70,7 @@ namespace RecipeEditor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.2.1.
+        ///   Looks up a localized string similar to 0.2.2.
         /// </summary>
         internal static string VersionString {
             get {
