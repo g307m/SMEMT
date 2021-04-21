@@ -159,7 +159,7 @@
       <Version>4.7.1</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encodings.Web">
-      <Version>4.7.1</Version>
+      <Version>4.7.2</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>4.7.2</Version>
